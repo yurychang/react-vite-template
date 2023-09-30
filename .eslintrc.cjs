@@ -1,7 +1,12 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: ['@yurychang/react', '@yurychang/typescript', 'prettier'],
+  extends: [
+    '@yurychang/react',
+    '@yurychang/typescript',
+    'plugin:vitest/recommended',
+    'prettier',
+  ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
