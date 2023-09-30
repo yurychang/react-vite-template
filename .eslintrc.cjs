@@ -8,4 +8,7 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
+  rules: {
+    'import/no-absolute-path': 'off',
+  },
 };
