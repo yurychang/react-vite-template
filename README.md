@@ -9,17 +9,16 @@ Template for React.
 - [ ] Unit test - Vitest
 
 ## Scrips
-### `npm dev`
+### `npm run dev`
 Start development server.
 
-### `npm build`
+### `npm run build`
 Build production bundle to `dist` folder.
 
-#### `npm lint`
+#### `npm run lint`
 Run ESLint for source code.
 
-#### `npm preview`
+#### `npm run preview`
 Preview build app on local, should execute `build` script first.
 
-## Features
-### Coding style Guard
+## Tech Stack
