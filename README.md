@@ -9,17 +9,31 @@ Template for React.
 - [ ] Unit test - Vitest
 
 ## Scrips
-### `npm dev`
+### `npm run dev`
 Start development server.
 
-### `npm build`
+### `npm run build`
 Build production bundle to `dist` folder.
 
-#### `npm lint`
+#### `npm run lint`
 Run ESLint for source code.
 
-#### `npm preview`
+#### `npm run preview`
 Preview build app on local, should execute `build` script first.
 
-## Features
-### Coding style Guard
+## Tech Stack
+### Zustand
+This template pre-installed zustand, you can follow [here](https://docs.pmnd.rs/zustand/integrations/third-party-libraries) to integrate other useful extensions.
+
+**Common recommendations:**
+- [Immer](https://immerjs.github.io/immer/)
+  [Immer middleware](https://docs.pmnd.rs/zustand/integrations/immer-middleware)
+- [@colorfy-software/zfy](https://colorfy-software.gitbook.io/zfy/) — 🧸 Useful helpers for state management in React with Zustand.
+- [auto-zustand-selectors-hook](https://github.com/Albert-Gao/auto-zustand-selectors-hook) — Automatic generation of Zustand hooks with Typescript support.
+
+### Tailwindcss
+**Excellent tailwindcss frameworks:**
+- [shadcn/ui](https://ui.shadcn.com/)
+- [flowbite](https://flowbite.com/)
+
+
