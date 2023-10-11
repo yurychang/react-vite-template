@@ -1,8 +1,38 @@
 import { useStore } from '@/store';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  addTodo as addTodoApi,
+  deleteTodo as deleteTodoApi,
+  getTodos,
+} from '@/apis';
 
 export function Home() {
   const bears = useStore.use.bears();
   const addBear = useStore.use.addBear();
+
+  // Access the client
+  const queryClient = useQueryClient();
+
+  // Queries
+  const query = useQuery({ queryKey: ['todos'], queryFn: getTodos });
+
+  // Mutations
+  const addTodo = useMutation({
+    mutationFn: addTodoApi,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+    },
+  });
+
+  const deleteTodo = useMutation({
+    mutationFn: deleteTodoApi,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['todos'] });
+    },
+  });
+
   return (
     <>
       <div className="flex justify-center">
@@ -12,16 +42,48 @@ export function Home() {
             like it!
           </h1>
           <div className="mt-8">
+            <h2 className="text-lg font-bold">Zustand example</h2>
             bears: {bears}
-            <button
-              className="px-3 ml-5 leading-7 text-white rounded cursor-pointer bg-neutral-400"
-              onClick={addBear}
+            <Button onClick={addBear}>add bear</Button>
+          </div>
+          <div className="mt-8">
+            <h2 className="text-lg font-bold">React Query example</h2>
+            <Button
+              onClick={() => {
+                addTodo.mutate('Do Laundry');
+              }}
             >
-              add bear
-            </button>
+              Add Todo
+            </Button>
+            <ul>
+              {query.data?.map((todo) => (
+                <li key={todo.id}>
+                  {todo.title}{' '}
+                  <Button
+                    onClick={() => {
+                      deleteTodo.mutate(todo.id);
+                    }}
+                  >
+                    X
+                  </Button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+function Button({ className, ...props }: any) {
+  return (
+    <button
+      className={
+        'px-3 ml-5 leading-7 text-white rounded cursor-pointer bg-neutral-400 ' +
+        className
+      }
+      {...props}
+    />
   );
 }

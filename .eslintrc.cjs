@@ -5,6 +5,7 @@ module.exports = {
     '@yurychang/react',
     '@yurychang/typescript',
     'plugin:vitest/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -15,5 +16,9 @@ module.exports = {
   },
   rules: {
     'import/no-absolute-path': 'off',
+    '@typescript-eslint/no-floating-promises': [
+      'warn',
+      { ignoreVoid: true, ignoreIIFE: true },
+    ],
   },
 };
