@@ -13,7 +13,7 @@ let mockTodos: Todo[] = [
 let todoId = 1;
 
 export const handlers = [
-  rest.get('/todos', (req, res, ctx) => {
+  rest.get('/todos', (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockTodos));
   }),
 
