@@ -30,6 +30,15 @@ Preview build app on local, should execute `build` script first.
 
 ## Tech Stack
 
+### ESLint
+auto fix on save:
+```json
+"editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": false
+}
+```
+
 ### Zustand
 
 This template pre-installed zustand, you can follow [here](https://docs.pmnd.rs/zustand/integrations/third-party-libraries) to integrate other useful extensions.

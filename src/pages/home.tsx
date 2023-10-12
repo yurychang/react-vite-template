@@ -1,10 +1,11 @@
-import { useStore } from '@/store';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import {
   addTodo as addTodoApi,
   deleteTodo as deleteTodoApi,
   getTodos,
 } from '@/apis';
+import { useStore } from '@/store';
 
 export function Home() {
   const bears = useStore.use.bears();

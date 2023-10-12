@@ -1,8 +1,10 @@
 import { create } from 'zustand';
-import { BearSlice, createBearSlice } from './bear';
-import { FishSlice, createFishSlice } from './fish';
 import { devtools } from 'zustand/middleware';
+
 import { createSelectors } from '@/utils/createSelectors';
+
+import { BearSlice, createBearSlice } from './bear';
+import { createFishSlice, FishSlice } from './fish';
 
 export const useStore = createSelectors(
   create<BearSlice & FishSlice>()(
