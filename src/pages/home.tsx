@@ -1,39 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-
-import {
-  addTodo as addTodoApi,
-  deleteTodo as deleteTodoApi,
-  getTodos,
-} from '@/apis';
-import { useStore } from '@/store';
+import { Link, Outlet } from 'react-router-dom';
 
 export function Home() {
-  const bears = useStore.use.bears();
-  const addBear = useStore.use.addBear();
-
-  // Access the client
-  const queryClient = useQueryClient();
-
-  // Queries
-  const query = useQuery({ queryKey: ['todos'], queryFn: getTodos });
-
-  // Mutations
-  const addTodo = useMutation({
-    mutationFn: addTodoApi,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    },
-  });
-
-  const deleteTodo = useMutation({
-    mutationFn: deleteTodoApi,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['todos'] });
-    },
-  });
-
   return (
     <>
       <div className="flex justify-center">
@@ -42,49 +9,20 @@ export function Home() {
             Nice to see you here! This is my react starter template. I hope you
             like it!
           </h1>
-          <div className="mt-8">
-            <h2 className="text-lg font-bold">Zustand example</h2>
-            bears: {bears}
-            <Button onClick={addBear}>add bear</Button>
-          </div>
-          <div className="mt-8">
-            <h2 className="text-lg font-bold">React Query example</h2>
-            <Button
-              onClick={() => {
-                addTodo.mutate('Do Laundry');
-              }}
-            >
-              Add Todo
-            </Button>
-            <ul>
-              {query.data?.map((todo) => (
-                <li key={todo.id}>
-                  {todo.title}{' '}
-                  <Button
-                    onClick={() => {
-                      deleteTodo.mutate(todo.id);
-                    }}
-                  >
-                    X
-                  </Button>
-                </li>
-              ))}
+
+          <nav className="my-5">
+            <ul className="flex gap-3 border-b border-b-orange-900">
+              <li>
+                <Link to={`query`}>React query</Link>
+              </li>
+              <li>
+                <Link to={`zustand`}>Zustand</Link>
+              </li>
             </ul>
-          </div>
+          </nav>
+          <Outlet />
         </div>
       </div>
     </>
-  );
-}
-
-function Button({ className, ...props }: any) {
-  return (
-    <button
-      className={
-        'px-3 ml-5 leading-7 text-white rounded cursor-pointer bg-neutral-400 ' +
-        className
-      }
-      {...props}
-    />
   );
 }
