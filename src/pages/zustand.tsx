@@ -1,7 +1,7 @@
 import { Button } from '@/components/button';
 import { useStore } from '@/store';
 
-export const Zustand = () => {
+const Zustand = () => {
   const bears = useStore.use.bears();
   const addBear = useStore.use.addBear();
 
@@ -13,3 +13,5 @@ export const Zustand = () => {
     </div>
   );
 };
+
+export default Zustand;

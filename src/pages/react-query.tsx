@@ -7,7 +7,7 @@ import {
 } from '@/apis';
 import { Button } from '@/components/button';
 
-export const ReactQuery = () => {
+const ReactQuery = () => {
   // Access the client
   const queryClient = useQueryClient();
 
@@ -58,3 +58,5 @@ export const ReactQuery = () => {
     </div>
   );
 };
+
+export default ReactQuery;

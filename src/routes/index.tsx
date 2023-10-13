@@ -1,9 +1,11 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Error404 } from '@/pages/error-404';
 import { Home } from '@/pages/home';
-import { ReactQuery } from '@/pages/react-query';
-import { Zustand } from '@/pages/zustand';
+
+const ReactQuery = lazy(() => import('@/pages/react-query'));
+const Zustand = lazy(() => import('@/pages/zustand'));
 
 export const router = createBrowserRouter([
   {
@@ -13,11 +15,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'query',
-        element: <ReactQuery />,
+        element: (
+          <Suspense>
+            <ReactQuery />
+          </Suspense>
+        ),
       },
       {
         path: 'zustand',
-        element: <Zustand />,
+        element: (
+          <Suspense>
+            <Zustand />
+          </Suspense>
+        ),
       },
     ],
   },
