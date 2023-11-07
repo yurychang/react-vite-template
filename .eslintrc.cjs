@@ -5,8 +5,10 @@ module.exports = {
     '@yurychang/react',
     '@yurychang/typescript',
     'plugin:vitest/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
     'prettier',
   ],
+  plugins: ['simple-import-sort', 'import'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,5 +17,11 @@ module.exports = {
   },
   rules: {
     'import/no-absolute-path': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
   },
 };
